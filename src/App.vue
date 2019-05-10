@@ -9,7 +9,11 @@
       <div class="content-wrap">
         <div class="nav-wrap">
           <div class="nav">
+            <!--<el-button class="open" @click="openClose">-->
+              <!--<span class="el-icon-s-fold"></span>-->
+            <!--</el-button>-->
             <el-menu
+              :collapse="isCollapse"
               :router="active"
               :unique-opened='active'
               :default-active="defaultActive"
@@ -17,6 +21,16 @@
               background-color="#545c64"
               text-color="#fff"
               active-text-color="#ffd04b">
+              <el-submenu index="1">
+                <template slot="title">
+                  <i class="el-icon-s-home"></i>
+                  <span>首页</span>
+                </template>
+                <el-menu-item index="/home">
+                  <i class="el-icon-s-home"></i>
+                  <span>首页</span>
+                </el-menu-item>
+              </el-submenu>
               <!--<el-submenu index="1">-->
                 <!--<template slot="title">-->
                   <!--<i class="el-icon-menu"></i>-->
@@ -152,11 +166,20 @@ export default {
   data(){
     return {
       defaultActive: '',
-      active: true
+      active: true,
+      isCollapse: false
     }
   },
   mounted(){
     this.defaultActive = this.$route.path
+    if(this.defaultActive = '/'){
+      this.defaultActive = '/home'
+    }
+  },
+  methods:{
+    openClose(){
+      this.isCollapse = !this.isCollapse
+    }
   }
 }
 </script>
@@ -196,8 +219,13 @@ export default {
       display: flex;
       display: -webkit-flex;
       .nav-wrap{
-        flex: 0 0 200px;
+        /*flex: 0 0 201px;*/
         background: #333744;
+        /*width: 201px;*/
+        overflow: hidden;
+        .open{
+          width: 100%;
+        }
       }
       .content-main{
         flex: 1;
