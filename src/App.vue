@@ -3,7 +3,10 @@
     <div class="wrap">
       <div class="header-wrap">
         <div class="header">
-          <div class="header-left">Money dodo</div>
+          <div class="header-left fl">Money dodo</div>
+          <div class="user-wrap fr">
+            {{username}}
+          </div>
         </div>
       </div>
       <div class="content-wrap">
@@ -161,13 +164,15 @@
 </template>
 
 <script>
+  import '../static/css/reset.css'
 export default {
   name: 'App',
   data(){
     return {
       defaultActive: '',
       active: true,
-      isCollapse: false
+      isCollapse: false,
+      username: 'test'
     }
   },
   mounted(){
@@ -202,14 +207,15 @@ export default {
       height: 50px;
       background: #23262b;
       .header{
-        display: flex;
-        display: -webkit-flex;
+        color: white;
+        line-height: 50px;
         .header-left{
-          flex: 0 0 200px;
-          line-height: 50px;
+          width: 200px;
           text-align: center;
-          color: white;
           /*background: cadetblue;*/
+        }
+        .user-wrap{
+          padding: 0 15px;
         }
       }
     }
